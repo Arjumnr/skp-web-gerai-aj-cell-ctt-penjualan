@@ -1,7 +1,7 @@
 @extends('_partials.index')
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Barang /</span> Daftar Barang</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Provider /</span> Daftar Provider</h4>
         <div class="d-flex justify-content-end mb-3">
             <button class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modal-form" id="btn-tambah">
                 <i class="menu-icon tf-icons  bx bx-plus">
@@ -14,9 +14,6 @@
 
                 <tr>
                     <th>No</th>
-                    <th>Barang</th>
-                    <th>Kategori</th>
-                    <th>Harga</th>
                     <th>Provider</th>
                     <th width="200px">Action</th>
                 </tr>
@@ -27,7 +24,7 @@
     </div>
 
     {{-- modal form  --}}
-    @include('admin.barang.form')
+    @include('admin.provider.form')
 @endsection
 @push('script')
     <script type="text/javascript">
@@ -43,27 +40,16 @@
             var table = $('#data-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('barang.index') }}",
+                ajax: "{{ route('provider.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'nama_barang',
-                        name: 'nama_barang'
+                        data: 'nama_provider',
+                        name: 'nama_provider'
                     },
-                    {
-                        data: 'kategori',
-                        name: 'kategori'
-                    },
-                    {
-                        data: 'harga',
-                        name: 'harga'
-                    },
-                    {
-                        data: 'provider_id',
-                        name: 'provider_id'
-                    },
+
 
 
                     {
@@ -81,18 +67,9 @@
                 table = $('#data-table').DataTable();
             } else {
                 table = $('#data-table').DataTable({
-                    "ajax": "{{ route('barang.index') }}",
+                    "ajax": "{{ route('provider.index') }}",
                     "columns": [{
-                            "data": "nama_barang"
-                        },
-                        {
-                            "data": "kategori"
-                        },
-                        {
-                            "data": "harga"
-                        },
-                        {
-                            "data": "provider_id"
+                            "data": "nama_provider"
                         },
 
                         {
@@ -102,17 +79,17 @@
                 });
             }
 
-            //add 
             $('#btn-simpan').on('click', function() {
-                console.log($("#form").serialize())
                 $.ajax({
-                    url: "{{ route('barang.store') }}",
+                    url: "{{ route('provider.store') }}",
                     dataType: 'json',
                     data: $("#form").serialize(),
                     type: 'POST',
                     success: function(data) {
-
+                        // console.log(data).then(function(data) {
                         table.draw();
+                        // })
+                        $('#modal-form').trigger("reset");
 
                     },
                     error: function(data) {
@@ -121,8 +98,7 @@
                 })
             })
 
-
-            //del
+            //delete 
             $('body').on('click', '.delete', function() {
 
                 var id = $(this).data("id");
@@ -139,7 +115,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "DELETE",
-                            url: "{{ route('barang.store') }}" + '/' + id,
+                            url: "{{ route('provider.store') }}" + '/' + id,
 
                             success: function(data) {
                                 Swal.fire({
@@ -164,5 +140,8 @@
             });
 
         });
+
+
+        //modal
     </script>
 @endpush

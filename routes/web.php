@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\PencatatanController;
+use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,9 +26,11 @@ Route::get('/logout' , [App\Http\Controllers\AuthController::class, 'logout'])->
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::group(['middleware' => ['adminAuth:admin']], function () {
-       Route::get('/' , [App\Http\Controllers\IndexController::class, 'index'])->name('index');
-       Route::get('users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
-       Route::get('barang', [App\Http\Controllers\BarangController::class, 'index'])->name('barang.index');
+       Route::get('/' , [IndexController::class, 'index'])->name('index');
+       Route::resource('users', UserController::class);
+       Route::resource('barang', BarangController::class);
+       Route::resource('provider', ProviderController::class);
+       Route::resource('pencatatan', PencatatanController::class);
 
     });
    

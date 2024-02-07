@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Barang;
 use App\Models\Provider;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
-class BarangController extends Controller
+class ProviderController extends Controller
 {
     public function index(Request $request){
-            $data = Barang::all();
-            $provider = Provider::all();
+        $data = Provider::all();
         try {
             if ($request->ajax()) {
                 return DataTables::of($data)
@@ -24,7 +22,7 @@ class BarangController extends Controller
                     ->rawColumns(['action'])
                     ->make(true);
             }
-            return view('admin.barang.index', compact('data', 'provider'));
+            return view('admin.provider.index');
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
@@ -32,14 +30,10 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         try {
-            Barang::updateOrCreate(
+            Provider::updateOrCreate(
                 ['id' => $request->data_id],
                 [
-                    'nama_barang' => $request->nama_barang,
-                    'kategori' => $request->kategori,
-                    'harga' => $request->harga,
-                    'provider_id' => strval($request->provider_id)
-
+                    'nama_provider' => $request->nama_provider,
                 ]
             );
             return response()->json(['status' => 'success', 'message' => 'Save data successfully.']);
@@ -50,7 +44,7 @@ class BarangController extends Controller
 
     public function edit($id)
     {
-        $dataUser = Barang::find($id);
+        $dataUser = Provider::find($id);
         return response()->json($dataUser);
     }
 
@@ -58,7 +52,7 @@ class BarangController extends Controller
     public function destroy($id)
     {
         try {
-            Barang::find($id)->delete();
+            Provider::find($id)->delete();
             return response()->json(['status' => 'success', 'message' => 'Data deleted successfully.']);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);

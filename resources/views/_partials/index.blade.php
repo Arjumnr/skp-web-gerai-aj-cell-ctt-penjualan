@@ -4,7 +4,7 @@
     data-assets-path="../assets/" data-template="vertical-menu-template-free">
 
 <head>
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
@@ -41,17 +41,17 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="../assets/js/config.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>  
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     {{-- <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script> --}}
     {{-- <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script> --}}
     {{-- <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>    --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
-  
+
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    
 
-    
+
 
 
 </head>
@@ -77,7 +77,7 @@
                 <div class="content-wrapper">
                     <!-- Content -->
 
-                  @yield('content')
+                    @yield('content')
                     <!-- / Content -->
 
                     <!-- Footer -->
@@ -89,7 +89,7 @@
                                 <script>
                                     document.write(new Date().getFullYear());
                                 </script>
-                                , made with  by
+                                , made with by
                                 <a href="https://themeselection.com" target="_blank"
                                     class="footer-link fw-medium">Anonymous</a>
                             </div>
@@ -145,6 +145,7 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
-  
-  @stack('script')
+
+@stack('script')
+
 </html>

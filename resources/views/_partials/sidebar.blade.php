@@ -58,16 +58,27 @@
     <ul class="menu-inner py-1">
         <!-- Dashboards -->
         <li class="menu-item  ">
-            <a href="javascript:void(0);" class="menu-link">
+            <a href="/admin" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Dashboards">Dashboards</div>
             </a>
-           
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('pencatatan.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons  bx bx-box"></i>
+                <div data-i18n="Pencatatan">Pencatatan</div>
+            </a>
         </li>
         <li class="menu-item">
             <a href="{{ route('barang.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons  bx bx-box"></i>
                 <div data-i18n="Barang">Barang</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('provider.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons  bx bx-box"></i>
+                <div data-i18n="Provider">Provider</div>
             </a>
         </li>
         <li class="menu-item">
