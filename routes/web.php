@@ -21,7 +21,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login' , [App\Http\Controllers\AuthController::class, 'getLogin'])->name('login');
 Route::post('/dologin' , [App\Http\Controllers\AuthController::class, 'postLogin'])->name('postLogin');
 Route::get('/logout' , [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
-// Route::get('/tes' , [App\Http\Controllers\IndexController::class, 'tes'])->name('tes');
+Route::get('/' , [App\Http\Controllers\IndexController::class, 'indexUser'])->name('home');
+Route::get('/produk' , [App\Http\Controllers\ProdukController::class, 'index'])->name('produk');
+Route::get('/keranjang' , [App\Http\Controllers\KeranjangController::class, 'index'])->name('keranjang');
+Route::post('/add-keranjang' , [App\Http\Controllers\KeranjangController::class, 'add'])->name('addKeranjang');
+Route::post('/pesan' , [App\Http\Controllers\KeranjangController::class, 'pesan'])->name('pesan');
 
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {

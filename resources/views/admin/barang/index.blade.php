@@ -1,9 +1,9 @@
-@extends('_partials.index')
+@extends('admin._partials.index')
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Barang /</span> Daftar Barang</h4>
         <div class="d-flex justify-content-end mb-3">
-            <button class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modal-form" id="btn-tambah">
+            <button type="button" class="btn btn-primary " id="btnTambah" data-bs-toggle="modal" data-bs-target="#basicModal">
                 <i class="menu-icon tf-icons  bx bx-plus">
                 </i>
             </button>
@@ -32,13 +32,18 @@
 @push('script')
     <script type="text/javascript">
         $(document).ready(function() {
+            // $('#modalID').modal('show');
             $.noConflict();
+
+
 
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
+
 
             var table = $('#data-table').DataTable({
                 processing: true,
@@ -102,24 +107,111 @@
                 });
             }
 
-            //add 
-            $('#btn-simpan').on('click', function() {
-                console.log($("#form").serialize())
-                $.ajax({
-                    url: "{{ route('barang.store') }}",
-                    dataType: 'json',
-                    data: $("#form").serialize(),
-                    type: 'POST',
-                    success: function(data) {
 
-                        table.draw();
+
+
+            //add 
+            // $('#btn-simpan').on('click', function(e) {
+            //     console.log($("#form").serialize())
+            //     e.preventDefault();
+            //     $(this).html('Sending..');
+            //     $.ajax({
+            //         url: "{{ route('barang.store') }}",
+            //         dataType: 'json',
+            //         data: $("#form").serialize(),
+            //         type: 'POST',
+            //         success: function(data) {
+            //             console.log(data.status);
+            //             // table.draw();
+            //             if (data.status == 'success') {
+            //                 Swal.fire({
+            //                     position: 'center',
+            //                     icon: 'success',
+            //                     title: 'Berhasil',
+            //                     showConfirmButton: false,
+            //                     timer: 1500
+            //                 }).then(function() {
+            //                     table.draw();
+            //                 })
+            //             } else {
+            //                 Swal.fire({
+            //                     position: 'center',
+            //                     icon: 'error',
+            //                     title: 'Gagal',
+            //                     showConfirmButton: false,
+            //                     timer: 1500
+            //                 })
+            //             }
+
+            //         },
+            //         error: function(data) {
+            //             console.log(data)
+            //             Swal.fire({
+            //                 position: 'center',
+            //                 icon: 'error',
+            //                 title: 'Data gagal ditambahkan',
+            //                 showConfirmButton: false,
+            //                 timer: 1500
+            //             })
+            //         }
+            //     })
+            // })
+            $('#form').on('submit', function(event) {
+                event.preventDefault();
+                var formData = new FormData(this);
+                var id = $('#data_id').val();
+                var url = "{{ route('barang.store') }}";
+                if (id != '') {
+                    //kirim id lewat form data 
+                    formData.append('data_id', id);
+                }
+                $.ajax({
+                    url: url,
+                    method: "POST",
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data);
+                        if (data.status == 'success') {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Berhasil',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(function() {
+                                table.draw();
+
+                            })
+                        } else {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: 'Gagal',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(function() {
+                                table.draw();
+
+                            })
+                        }
+                        $("#basicModal").removeClass("in");
+                        $(".modal-backdrop").remove();
+                        $("#basicModal").hide();
+
+                        $('#form').trigger("reset");
 
                     },
                     error: function(data) {
-                        console.log(data)
+                        console.log(data);
+
+
                     }
                 })
-            })
+            });
 
 
             //del

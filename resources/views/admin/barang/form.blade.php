@@ -1,19 +1,27 @@
 {{-- modal form --}}
-<div class="modal " id="modal-form" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+{{-- <div class="modal " id="modal-form" tabindex="-1" aria-hidden="true" role="dialog"> --}}
+<div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+    {{-- <div class="modal-dialog modal-lg" role="document"> --}}
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modal-title">Form Barang</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="form">
+                <form id="form" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="data_id" id="data_id">
                     <div class="mb-3">
                         <label for="nama_barang" class="form-label">Nama Barang</label>
                         <input type="text" class="form-control" id="nama_barang" name="nama_barang"
                             placeholder="Enter your Barang" />
+                    </div>
+                    {{-- gambar --}}
+                    <div class="mb-3">
+                        <label for="gambar" class="form-label">Gambar</label>
+                        <input type="file" class="form-control" id="gambar" name="gambar"
+                            placeholder="Enter your Gambar" />
                     </div>
                     <div class="mb-3">
                         <label for="kategori" class="form-label">Kategori</label>

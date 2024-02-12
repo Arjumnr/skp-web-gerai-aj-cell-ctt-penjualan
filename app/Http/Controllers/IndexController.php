@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\Export\UserExport;
+use App\Models\Barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -19,6 +20,22 @@ class IndexController extends Controller
         //     return view('login');
         // }
        
+    }
+
+    public function indexUser(){
+        $barang = Barang::all();
+        
+        if (Auth::check()) {
+            $cek = true;
+          
+        }else {
+            $cek = false;
+        }
+        return view('index', compact('cek', 'barang'));
+    } 
+
+    public function keranjang(){
+        return view('keranjang.index');
     }
 
     

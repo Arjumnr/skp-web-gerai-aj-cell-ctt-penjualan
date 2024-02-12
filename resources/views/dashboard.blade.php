@@ -1,4 +1,4 @@
-@extends('_partials.index')
+@extends('admin._partials.index')
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">

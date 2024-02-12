@@ -28,6 +28,7 @@
     <!-- Core CSS -->
     <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    
     <link rel="stylesheet" href="../assets/css/demo.css" />
 
     <!-- Vendors CSS -->
@@ -62,14 +63,14 @@
         <div class="layout-container">
             <!-- Menu -->
 
-            @include('_partials.sidebar')
+            @include('admin._partials.sidebar')
             <!-- / Menu -->
 
             <!-- Layout container -->
             <div class="layout-page">
                 <!-- Navbar -->
 
-                @include('_partials.navbar')
+                @include('admin._partials.navbar')
 
                 <!-- / Navbar -->
 
@@ -130,7 +131,7 @@
     <script src="../assets/vendor/js/bootstrap.js"></script>
     <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="../assets/vendor/js/menu.js"></script>
-
+    {{-- <script src="../assets/js/ui-modals.js"></script> --}}
     <!-- endbuild -->
 
     <!-- Vendors JS -->
@@ -144,8 +145,11 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    
+@stack('script')
+
 </body>
 
-@stack('script')
 
 </html>

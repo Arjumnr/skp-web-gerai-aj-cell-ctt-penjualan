@@ -1,4 +1,4 @@
-@extends('_partials.index')
+@extends('admin._partials.index')
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">User /</span> Daftar User</h4>
@@ -8,6 +8,8 @@
                     <th>No</th>
                     <th>Name</th>
                     <th>Username</th>
+                    <th>Level</th>
+                    <th>No. Hp</th>
                     <th width="100px">Action</th>
                 </tr>
             </thead>
@@ -42,6 +44,14 @@
                     {
                         data: 'username',
                         name: 'username'
+                    },
+                    {
+                        data: 'level',
+                        name: 'level'
+                    },
+                    {
+                        data: 'no_hp',
+                        name: 'no_hp'
                     },
 
                     {

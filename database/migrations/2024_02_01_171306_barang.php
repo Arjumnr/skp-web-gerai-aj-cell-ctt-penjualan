@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('barangs', function (Blueprint $table) {
             $table->id();
             $table->string('nama_barang');
+            $table->string('gambar');
             $table->enum('kategori', ['voucer', 'kartu']);
             $table->string('harga');
             $table->string('provider_id');

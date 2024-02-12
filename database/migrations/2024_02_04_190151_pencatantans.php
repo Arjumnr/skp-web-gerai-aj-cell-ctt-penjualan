@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('barang_id');
             $table->string('jumlah');
             $table->string('total');
+            $table->string('user_id');
+            $table->enum('status', ['lunas', 'belum_lunas']);
             $table->timestamps();
         });
     }

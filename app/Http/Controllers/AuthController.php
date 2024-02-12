@@ -30,6 +30,10 @@ class AuthController extends Controller
                 // return 'okesi';
                 return redirect('/admin');
             }
+
+            if ($user->level == 'user') {
+                return redirect('/');
+            }
         }
         else{
             return dd('salah');

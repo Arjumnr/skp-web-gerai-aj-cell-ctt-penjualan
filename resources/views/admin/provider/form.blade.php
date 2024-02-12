@@ -1,6 +1,8 @@
 {{-- modal form --}}
-<div class="modal " id="modal-form" tabindex="-1" aria-hidden="true" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
+{{-- <div class="modal " id="modal-form" tabindex="-1" aria-hidden="true" role="dialog"> --}}
+<div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+    {{-- <div class="modal-dialog modal-lg" role="document"> --}}
+        <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modal-title">Form Provider</h5>
@@ -22,7 +24,7 @@
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     Close
                 </button>
-                <button type="submit" form="form" class="btn btn-primary"  id="btn-simpan">Simpan</button>
+                <button type="submit" form="form" class="btn btn-primary" id="btn-simpan">Simpan</button>
             </div>
         </div>
     </div>

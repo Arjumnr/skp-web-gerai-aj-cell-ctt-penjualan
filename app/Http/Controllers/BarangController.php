@@ -32,10 +32,20 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         try {
+
+            if (  $request->file('gambar')) {
+                $file =  $request->file('gambar');
+                $name = $file->getClientOriginalName();
+                $file->move(public_path().'/img/barang/', $name);
+            }else{
+                return response()->json(['status' => 'error', 'message' => 'File not found.']);
+            }
+    
             Barang::updateOrCreate(
                 ['id' => $request->data_id],
                 [
                     'nama_barang' => $request->nama_barang,
+                    'gambar' => $name,
                     'kategori' => $request->kategori,
                     'harga' => $request->harga,
                     'provider_id' => strval($request->provider_id)
