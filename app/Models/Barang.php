@@ -14,6 +14,7 @@ class Barang extends Model
         'gambar',
         'harga',
         'kategori',
+        'stok',
         'provider_id'
     ];
 

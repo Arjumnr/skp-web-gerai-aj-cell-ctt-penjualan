@@ -26,7 +26,8 @@ Route::get('/logout' , [App\Http\Controllers\AuthController::class, 'logout'])->
 Route::get('/' , [App\Http\Controllers\IndexController::class, 'indexUser'])->name('home');
 Route::get('/produk' , [App\Http\Controllers\ProdukController::class, 'index'])->name('produk');
 Route::get('/keranjang' , [App\Http\Controllers\KeranjangController::class, 'index'])->name('keranjang');
-Route::post('/add-keranjang' , [App\Http\Controllers\KeranjangController::class, 'add'])->name('addKeranjang');
+Route::get('/add-keranjang/{id}' , [App\Http\Controllers\KeranjangController::class, 'add'])->name('addKeranjang');
+Route::get('/del-keranjang/{id}' , [App\Http\Controllers\KeranjangController::class, 'delKeranjang'])->name('delKeranjang');
 Route::post('/pesan' , [App\Http\Controllers\KeranjangController::class, 'pesan'])->name('pesan');
 
 

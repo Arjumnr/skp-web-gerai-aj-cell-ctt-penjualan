@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('gambar');
             $table->enum('kategori', ['voucer', 'kartu']);
             $table->string('harga');
+            $table->string('stok');
             $table->string('provider_id');
             $table->timestamps();
         });

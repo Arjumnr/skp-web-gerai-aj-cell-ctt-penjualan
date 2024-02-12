@@ -16,7 +16,7 @@
     </div>
     <div class="untree_co-section before-footer-section">
         <div class="container">
-            <div class="row mb-5">
+            <div class="row mb-5 ">
                 <form class="col-md-12" method="post">
                     <div class="site-blocks-table">
                         <table class="table">
@@ -26,13 +26,14 @@
                                     <th class="product-name">Produk</th>
                                     <th class="product-price">Harga</th>
                                     <th class="product-quantity">Jumlah</th>
+                                    <th class="product-quantity">Stok</th>
                                     <th class="product-total">Total</th>
                                     <th class="product-remove">Hapus</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($keranjang as $v)
-                                    <tr>
+                                    <tr class="text-center">
                                         <td class="product-thumbnail">
                                             <img src="{{ asset('img/barang/' . $v->getBarang->gambar) }}" alt="Image"
                                                 class="img-fluid">
@@ -58,8 +59,11 @@
                                                 </div>
                                             </div>
                                         </td>
+                                        <td>{{ $v->getBarang->stok }}</td>
                                         <td>Rp. {{ number_format($v->getBarang->harga, 0, ',', '.') }}</td>
-                                        <td><a href="#" class="btn btn-black btn-sm">X</a></td>
+                                        <td>
+                                            <a href="{{ route('delKeranjang', $v->id) }}" class="btn btn-black btn-sm">X</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -70,21 +74,21 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    {{-- <div class="row mb-5">
+                    <div class="row mb-5">
                         <div class="col-md-6 mb-3 mb-md-0">
-                            <button class="btn btn-black btn-sm btn-block">Update Cart</button>
+                            {{-- <button class="btn btn-black btn-sm btn-block">Update Cart</button> --}}
                         </div>
                         <div class="col-md-6">
-                            <button class="btn btn-outline-black btn-sm btn-block">Continue Shopping</button>
+                            <button class="btn btn-outline-black btn-sm btn-block">Hitung</button>
                         </div>
-                    </div> --}}
+                    </div>
 
                 </div>
                 <div class="col-md-6 pl-5">
                     <div class="row justify-content-end">
                         <div class="col-md-7">
                             <div class="row">
-                                <div class="col-md-12 text-right border-bottom mb-5">
+                                <div class="col-md-12 text-right border-bottom mb-5" id="btn-hitung">
                                     <h3 class="text-black h4 text-uppercase">Total Pesanan</h3>
                                 </div>
                             </div>
