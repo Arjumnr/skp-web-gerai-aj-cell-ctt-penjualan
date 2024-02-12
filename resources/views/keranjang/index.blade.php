@@ -1,84 +1,115 @@
 @extends('layouts.index')
 @section('content')
-    <div class="brand_color">
+    <div class="hero">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="titlepage">
-                        <h2>Keranjang</h2>
+            <div class="row justify-content-between">
+                <div class="col-lg-5">
+                    <div class="intro-excerpt">
+                        <h1>Keranjang</h1>
                     </div>
+                </div>
+                <div class="col-lg-7">
+
                 </div>
             </div>
         </div>
-        <div class="product-bg">
-            <div class="product-bg-white">
-                <form id="form">
-                    @csrf
-                    @foreach ($keranjang as $v)
-                        {{-- <input type="hidden" name="barang_id[]" value="{{ $v->id }}"> --}}
-                        <div class="container">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <input type="checkbox" name="check[]" value="{{ $v->id }}">
+    </div>
+    <div class="untree_co-section before-footer-section">
+        <div class="container">
+            <div class="row mb-5">
+                <form class="col-md-12" method="post">
+                    <div class="site-blocks-table">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="product-thumbnail">Gamabr</th>
+                                    <th class="product-name">Produk</th>
+                                    <th class="product-price">Harga</th>
+                                    <th class="product-quantity">Jumlah</th>
+                                    <th class="product-total">Total</th>
+                                    <th class="product-remove">Hapus</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($keranjang as $v)
+                                    <tr>
+                                        <td class="product-thumbnail">
+                                            <img src="{{ asset('img/barang/' . $v->getBarang->gambar) }}" alt="Image"
+                                                class="img-fluid">
+                                        </td>
+                                        <td class="product-name">
+                                            <h2 class="h5 text-black">{{ $v->getBarang->nama_barang }}</h2>
+                                        </td>
+                                        <td>Rp. {{ number_format($v->getBarang->harga, 0, ',', '.') }}</td>
+                                        <td>
+                                            <div class="input-group mb-3 d-flex align-items-center quantity-container"
+                                                style="max-width: 120px;">
+                                                <div class="input-group-prepend">
+                                                    <button class="btn btn-outline-black decrease"
+                                                        type="button">&minus;</button>
+                                                </div>
+                                                <input type="text" class="form-control text-center quantity-amount"
+                                                    value="1" placeholder=""
+                                                    aria-label="Example text with button addon"
+                                                    aria-describedby="button-addon1">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-black increase"
+                                                        type="button">&plus;</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input type="text" class="form-control" value="1" name="jumlah[]">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <input disabled type="text">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col text-center">
-                                    <input hidden name="harga[]" value="{{ $v->getBarang->harga }}">
-                                    <h3>Rp
-                                        {{ number_format($v->getBarang->harga) }}
-                                    </h3>
-                                </div>
-
-
-                                <div class="col text-center">
-                                    <i><img src="{{ asset('img/barang/' . $v->getBarang->gambar) }}" width="100"
-                                            height="100" /></i>
-                                    <h3>{{ $v->getBarang->nama_barang }}</h3>
-                                </div>
-
-                            </div>
-                        </div>
-                    @endforeach
-                    {{-- button simpan --}}
-                    {{-- total Bayar  --}}
-                    <input type="hidden" name="total" id="total">
-                    <hr>
-
-                    <div class="container text-end ">
-                        <h3>Total Bayar = Rp <span id="totalBayar">0</span></h3>
-                    </div>
-
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-danger">Pesan</button>
+                                        </td>
+                                        <td>Rp. {{ number_format($v->getBarang->harga, 0, ',', '.') }}</td>
+                                        <td><a href="#" class="btn btn-black btn-sm">X</a></td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </form>
             </div>
 
-
-            <div class="container">
-                <div class="yellow_bg">
-                    <div class="row">
-                        <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
-                            <div class="yellow-box">
-                                <h3>REQUEST A FREE QUOTE<i><img src="{{ asset('themes/icon/calll.png') }}" /></i></h3>
-
-                                <p>Get answers and advice from people you want it from.</p>
-                            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{-- <div class="row mb-5">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <button class="btn btn-black btn-sm btn-block">Update Cart</button>
                         </div>
-                        <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
-                            <div class="yellow-box">
-                                <a href="#">Get Quote</a>
+                        <div class="col-md-6">
+                            <button class="btn btn-outline-black btn-sm btn-block">Continue Shopping</button>
+                        </div>
+                    </div> --}}
+
+                </div>
+                <div class="col-md-6 pl-5">
+                    <div class="row justify-content-end">
+                        <div class="col-md-7">
+                            <div class="row">
+                                <div class="col-md-12 text-right border-bottom mb-5">
+                                    <h3 class="text-black h4 text-uppercase">Total Pesanan</h3>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <span class="text-black">Subtotal</span>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <strong class="text-black">$230.00</strong>
+                                </div>
+                            </div>
+                            <div class="row mb-5">
+                                <div class="col-md-6">
+                                    <span class="text-black">Total</span>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <strong class="text-black">$230.00</strong>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button class="btn btn-black btn-lg py-3 btn-block"
+                                        onclick="window.location='checkout.html'">Pesanan</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -115,7 +146,7 @@
                     price = parseFloat(price.replace('Rp ', '').replace(',', ''));
 
                     if (!isNaN(price)) {
-                        
+
                         // Multiply the price by quantity and add to the total
                         total += price * quantity;
                     } else {
@@ -142,11 +173,11 @@
                     formData = formData;
                     console.log(cek);
                     console.log(formData);
-                // } else if (cek > 1) {
-                //     console.log(cek);
-                //     $('input[name="check[]"]:checked').each(function() {
-                //         formData.append('check[]', $(this).val());
-                //     });
+                    // } else if (cek > 1) {
+                    //     console.log(cek);
+                    //     $('input[name="check[]"]:checked').each(function() {
+                    //         formData.append('check[]', $(this).val());
+                    //     });
                 } else {
                     formData = null;
                     console.log('No checkboxes are checked.');

@@ -19,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/login' , [App\Http\Controllers\AuthController::class, 'getLogin'])->name('login');
+Route::get('/regiter' , [App\Http\Controllers\AuthController::class, 'register'])->name('register');
 Route::post('/dologin' , [App\Http\Controllers\AuthController::class, 'postLogin'])->name('postLogin');
+Route::post('/do-register' , [App\Http\Controllers\AuthController::class, 'postRegister'])->name('postRegister');
 Route::get('/logout' , [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 Route::get('/' , [App\Http\Controllers\IndexController::class, 'indexUser'])->name('home');
 Route::get('/produk' , [App\Http\Controllers\ProdukController::class, 'index'])->name('produk');

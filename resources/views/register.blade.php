@@ -8,7 +8,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Login Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Register Aj Cell</title>
 
     <meta name="description" content="" />
 
@@ -108,12 +108,18 @@
                         </div>
                         <!-- /Logo -->
                         <h4 class="mb-2">Welcome to AJ Cell! 👋</h4>
-                        <p class="mb-4">Please sign-in to your account </p>
+                        <p class="mb-4">Please Register to your account </p>
 
-                        <form id="formAuthentication" method="POST" class="mb-3" action="{{ route('postLogin') }}">
+                        <form id="formAuthentication" method="POST" class="mb-3"
+                            action="{{ route('postRegister') }}">
                             @csrf
                             <div class="mb-3">
-                                <label for="username" class="form-label"> Username</label>
+                                <label for="name" class="form-label">Name</label>
+                                <input required type="text" class="form-control" id="name" name="name"
+                                    placeholder="Enter your or name" autofocus />
+                            </div>
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
                                 <input required type="text" class="form-control" id="username" name="username"
                                     placeholder="Enter your or username" autofocus />
                             </div>
@@ -123,19 +129,23 @@
 
                                 </div>
                                 <div class="input-group input-group-merge">
-                                    <input required type="password" id="password" class="form-control"
-                                        name="password"
+                                    <input required type="password" id="password" class="form-control" name="password"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                         aria-describedby="password" />
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <button class="btn btn-primary d-grid w-100" type="submit">Login</button>
+                                <label for="no_hp" class="form-label">No. Hp</label>
+                                <input required type="text" class="form-control" id="no_hp" name="no_hp"
+                                    placeholder="Enter your or No. Hp" autofocus />
                             </div>
                             <div class="mb-3">
-                                <a href="{{ route('register') }}"> <button class="btn btn-primary d-grid w-100"
-                                        type="button">Register</button></a>
+                                <button class="btn btn-primary d-grid w-100" type="submit">Register</button>
+                            </div>
+                            <div class="mb-3">
+                                <a href="{{ route('login') }}"> <button class="btn btn-primary d-grid w-100"
+                                        type="button">Login</button></a>
                             </div>
                         </form>
 
