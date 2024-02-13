@@ -28,8 +28,16 @@
                         <select class="form-select" id="kategori" name="kategori">
                             <option selected>--- Pilih Kategori ---</option>
                             <option value="voucher">Vaucher</option>
-                            <option value="kartu">Kartu</option>
+                            <option value="kartu_data">Kartu Data</option>
+                            <option value="kartu_biasa">Kartu Biasa</option>
+                            <option value="token">Token</option>
+                            <option value="pulsa">Pulsa</option>
                         </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="modal" class="form-label">Modal</label>
+                        <input type="number" class="form-control" id="modal" name="modal"
+                            placeholder="Enter your Modal" />
                     </div>
                     <div class="mb-3">
                         <label for="harga" class="form-label">Harga</label>
@@ -37,15 +45,11 @@
                             placeholder="Enter your Harga" />
                     </div>
                     <div class="mb-3">
-                        <label for="provider_id" class="form-label">Provider</label>
-                        <select class="form-select" id="provider_id" name="provider_id">
-                            <option selected>--- Pilih Provider ---</option>
-                            @foreach ($provider as $item)
-                                <option value="{{ $item->id }}">{{ $item->nama_provider }}</option>
-                            @endforeach
-                        </select>
-
+                        <label for="stok" class="form-label">Stok</label>
+                        <input type="number" class="form-control" id="stok" name="stok"
+                            placeholder="Enter your Stok" />
                     </div>
+                   
                 </form>
             </div>
             <div class="modal-footer">

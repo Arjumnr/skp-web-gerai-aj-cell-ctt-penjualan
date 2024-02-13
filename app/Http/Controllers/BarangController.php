@@ -47,8 +47,9 @@ class BarangController extends Controller
                     'nama_barang' => $request->nama_barang,
                     'gambar' => $name,
                     'kategori' => $request->kategori,
+                    'modal' => $request->modal,
                     'harga' => $request->harga,
-                    'provider_id' => strval($request->provider_id)
+                    'stok' => $request->stok,
 
                 ]
             );

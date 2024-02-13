@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nama_barang');
             $table->string('gambar');
-            $table->enum('kategori', ['voucer', 'kartu']);
+            $table->enum('kategori', ['voucer', 'kartu_biasa', 'kartu_data', 'token', 'pulsa']);
+            $table->string('modal');
             $table->string('harga');
             $table->string('stok');
-            $table->string('provider_id');
             $table->timestamps();
         });
     }

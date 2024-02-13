@@ -22,7 +22,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="product-thumbnail">Gamabr</th>
+                                    <th class="product-thumbnail">Gambar</th>
                                     <th class="product-name">Produk</th>
                                     <th class="product-price">Harga</th>
                                     <th class="product-quantity">Jumlah</th>
@@ -97,7 +97,7 @@
                                     <span class="text-black">Subtotal</span>
                                 </div>
                                 <div class="col-md-6 text-right">
-                                    <strong class="text-black">$230.00</strong>
+                                    <strong class="text-black">Rp {{ number_format(13000, 0, ',', '.') }}</strong>
                                 </div>
                             </div>
                             <div class="row mb-5">
@@ -105,7 +105,7 @@
                                     <span class="text-black">Total</span>
                                 </div>
                                 <div class="col-md-6 text-right">
-                                    <strong class="text-black">$230.00</strong>
+                                    <strong class="text-black">Rp {{ number_format(13000, 0, ',', '.') }}</strong>
                                 </div>
                             </div>
 

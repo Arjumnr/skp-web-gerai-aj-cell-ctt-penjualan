@@ -16,8 +16,9 @@
                     <th>No</th>
                     <th>Barang</th>
                     <th>Kategori</th>
+                    <th>Modal</th>
                     <th>Harga</th>
-                    <th>Provider</th>
+                    <th>Stok</th>
                     <th width="200px">Action</th>
                 </tr>
             </thead>
@@ -62,11 +63,15 @@
                         name: 'kategori'
                     },
                     {
+                        data: 'modal',
+                        name: 'modal'
+                    },
+                    {
                         data: 'harga',
                         name: 'harga'
                     },
                     {
-                        data: 'provider_id',
+                        data: 'stok',
                         name: 'provider_id'
                     },
 
