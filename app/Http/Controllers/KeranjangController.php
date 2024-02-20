@@ -25,6 +25,15 @@ class KeranjangController extends Controller
 
     public function add ($id) {
        try {
+
+        if (Auth::check()) {
+            // $cek = true;
+          
+        }else {
+            // $cek = false;
+            return view('login');
+        }
+
         $dataBarang = Barang::where('id', $id)->first();
         // return response()->json(['status' => 'error', 'barang_id' => $dataBarang]);
 
@@ -60,48 +69,49 @@ class KeranjangController extends Controller
     public function pesan(Request $req) {
         try{
             $data = $req->all();
+            // return response()->json(['data' =>  $data]);
+            // return response()->json(['GBR' =>   $req->file('gambar')]);
            
-           
-            if (isset($data['check'])) {
-                $totData = count($data['check']);
+            // if (isset($data['check'])) {
+                $totData = count($data['hrg']);
+                
                 // return response()->json(['data' => $data, 'totData' => $totData]);
                 // return response()->json(['totData' => $totData]);
-
-                if ($totData > 0) {
+                if ( $req->hasFile('gambar')) {
+                    $file =  $req->file('gambar');
+                    // return response()->json(['gambar' =>  $file]);
+                    $name = $file->getClientOriginalName();
+                    $file->move(public_path().'/img/bukti/', $name);
+                }else{
+                    return response()->json(['status' => 'error', 'message' => 'File not found.']);
+                }
+                // if ($totData > 0) {
                     for ($i = 0; $i < $totData; $i++) {
                         $pencatatan = new Pencatatan();
                         $pencatatan->user_id = Auth::user()->id;
-                        $pencatatan->barang_id = $data['check'][$i];
+                        $pencatatan->barang_id = $data['id'][$i];
                         $pencatatan->total = strval($data['total']);
-                        $pencatatan->jumlah = strval($data['jumlah'][$i]);
+                        $pencatatan->jumlah = strval($data['jml'][$i]);
+                        $pencatatan->bukti_tf = strval($data['gambar']);
                         $pencatatan->save();
 
-
-                        // update keranjang
-                        $keranjang = Keranjang::where('user_id', Auth::user()->id)->where('status', 0)->where('barang_id', $data['check'][$i])->get();
-                        // update(['status' => 1, 'total' => $data['total'], 'jumlah' => $data['jumlah'][$i]]);
-
-                        //  ->update([
-                        //     'status' => 1,
-                        //     'total' => $data['total'],
-                        //     'jumlah' => $data['jumlah'][$i]
-                        // ]);
-
-
-
-
+                        //kurangi stok pada barang id 
+                        $dataBarang = Barang::where('id', $data['id'][$i])->first();
+                        // return response()->json(['dataBarang' => $dataBarang, 'id' => $data['id'][$i]]);
+                        $dataBarang->stok = $dataBarang->stok - $data['jml'][$i];
+                        $dataBarang->update();
                     }
                     // $keranjang = Keranjang::where('user_id', Auth::user()->id)->where('status', 0)->get();
-                    return response()->json(['keranjang' => $keranjang]);
+                    // return response()->json(['keranjang' => $keranjang]);
                     
 
                     return response()->json(['status' => 'success', 'message' => 'Produk ditambahkan ke keranjang']);
-                } else {
-                    return response()->json(['status' => 'error', 'message' => 'No checkboxes are checked.']);
-                }
-            }
+                // } else {
+                //     return response()->json(['status' => 'error', 'message' => 'No checkboxes are checked.']);
+                // }
+            // }
 
-            return response()->json(['status' => 'error', 'message' => 'No data received.']);
+            // return response()->json(['status' => 'error', 'message' => 'No data received.']);
 
 
         } catch (\Exception $e) {

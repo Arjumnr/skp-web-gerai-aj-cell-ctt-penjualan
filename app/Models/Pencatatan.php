@@ -14,7 +14,7 @@ class Pencatatan extends Model
         'jumlah',
         'total',
         'user_id',
-        'status',
+        'bukti_tf',
     ];
 
     public function get_barang(){

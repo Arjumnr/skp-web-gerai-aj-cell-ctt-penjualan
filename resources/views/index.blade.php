@@ -32,6 +32,8 @@
                         <a class="product-item" href="{{ route('addKeranjang', $v->id) }}">
                             <img src="{{ asset('img/barang/' . $v->gambar) }}" class="img-fluid product-thumbnail">
                             <h3 class="product-title">{{ $v->nama_barang }}</h3>
+                            <h3 class="product-title">Tersedia : {{ $v->stok }}</h3>
+                            
                             <strong class="product-price"></strong>
 
                             <span class="icon-cross">

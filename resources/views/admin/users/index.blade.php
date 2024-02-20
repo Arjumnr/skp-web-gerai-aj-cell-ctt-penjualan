@@ -84,6 +84,47 @@
                 });
             }
 
+
+            $('body').on('click', '.delete', function() {
+
+                var id = $(this).data("id");
+                console.log(id)
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "DELETE",
+                            url: "{{ route('users.store') }}" + '/' + id,
+
+                            success: function(data) {
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: 'Data berhasil dihapus',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                }).then(function() {
+                                    table.draw();
+                                })
+
+                            },
+                            error: function(data) {
+                                console.log(data)
+                            }
+                        });
+
+                    }
+                })
+
+            });
+
         });
     </script>
 @endpush

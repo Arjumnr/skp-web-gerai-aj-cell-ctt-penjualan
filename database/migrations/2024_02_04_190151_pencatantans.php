@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('jumlah');
             $table->string('total');
             $table->string('user_id');
-            $table->enum('status', ['lunas', 'belum_lunas']);
+            $table->string('bukti_tf')->nullable();
             $table->timestamps();
         });
     }

@@ -16,6 +16,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="{{ asset('furni/css/tiny-slider.css') }}" rel="stylesheet">
     <link href="{{ asset('furni/css/style.css') }}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <title>AJ Cell</title>
 </head>
 
@@ -25,7 +28,7 @@
     <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 
         <div class="container">
-            <a class="navbar-brand" href="index.html">AJ Cell<span>.</span></a>
+            <a class="navbar-brand" href="{{ route('home') }}">AJ Cell<span>.</span></a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
                 aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
@@ -132,6 +135,9 @@
     <script src="{{ asset('furni/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('furni/js/tiny-slider.js') }}"></script>
     <script src="{{ asset('furni/js/custom.js') }}"></script>
+
+    @stack('script2')
+
 </body>
 
 </html>
