@@ -33,8 +33,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <form id="formID" class="col-md-12" enctype="multipart/form-data" method="POST" >
-                                {{  csrf_field()  }}
+                            <form id="formID" class="col-md-12" enctype="multipart/form-data" method="POST">
+                                {{ csrf_field() }}
                                 @csrf
                                 @foreach ($keranjang as $v)
                                     <input type="hidden" name="id[]" value="{{ $v->barang_id }}">
@@ -97,9 +97,12 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="gambar" class="form-label text-black h4">Upload Bukti Pembayaran 081244923164
+                            <label for="gambar" class="form-label text-black h4"> Pembayaran 081244923164
                                 (DANA)</label>
-                            <input required type="file" id="gambar" name="gambar" />
+                            <label for="gambar" class="form-label text-black h4">
+                                <a href="https://wa.me/6282348935818" target="_blank">Kirim bukti di WhatsApp</a>
+                            </label>
+                            {{-- <input required type="file" id="gambar" name="gambar" /> --}}
                             {{-- <button class="btn btn-outline-black btn-sm btn-block" id="btn-hitung">Hitung</button> --}}
 
                         </div>
@@ -133,12 +136,12 @@
                             </div>
 
                             <div class="row">
-                               
+
                                 <div class="col-md-6">
                                     <button type="submit" class="btn btn-black btn-lg py-3 btn-block"
                                         id="btn-pesanan">Pesanan</button>
                                 </div>
-                            </form>
+                                </form>
 
                                 <div class="col-md-6">
                                     <button class="btn btn-black btn-lg py-3 btn-block" id="btn-hitung">Hitung</button>

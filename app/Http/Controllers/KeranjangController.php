@@ -77,14 +77,14 @@ class KeranjangController extends Controller
                 
                 // return response()->json(['data' => $data, 'totData' => $totData]);
                 // return response()->json(['totData' => $totData]);
-                if ( $req->hasFile('gambar')) {
-                    $file =  $req->file('gambar');
-                    // return response()->json(['gambar' =>  $file]);
-                    $name = $file->getClientOriginalName();
-                    $file->move(public_path().'/img/bukti/', $name);
-                }else{
-                    return response()->json(['status' => 'error', 'message' => 'File not found.']);
-                }
+                // if ( $req->hasFile('gambar')) {
+                //     $file =  $req->file('gambar');
+                //     // return response()->json(['gambar' =>  $file]);
+                //     $name = $file->getClientOriginalName();
+                //     $file->move(public_path().'/img/bukti/', $name);
+                // }else{
+                //     return response()->json(['status' => 'error', 'message' => 'File not found.']);
+                // }
                 // if ($totData > 0) {
                     for ($i = 0; $i < $totData; $i++) {
                         $pencatatan = new Pencatatan();
@@ -92,7 +92,8 @@ class KeranjangController extends Controller
                         $pencatatan->barang_id = $data['id'][$i];
                         $pencatatan->total = strval($data['total']);
                         $pencatatan->jumlah = strval($data['jml'][$i]);
-                        $pencatatan->bukti_tf = strval($data['gambar']);
+                        // $pencatatan->bukti_tf = strval($data['gambar']);
+                        $pencatatan->bukti_tf = '';
                         $pencatatan->save();
 
                         //kurangi stok pada barang id 

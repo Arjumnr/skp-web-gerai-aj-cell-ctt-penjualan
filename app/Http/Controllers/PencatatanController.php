@@ -14,7 +14,7 @@ class PencatatanController extends Controller
 {
     public function index(Request $request){
         $data = Pencatatan::with('get_barang', 'get_user')
-            ->orderBy('created_at', 'asc')
+            ->orderBy('created_at', 'DESC')
             ->get();
         $barang = Barang::all();
             try {
