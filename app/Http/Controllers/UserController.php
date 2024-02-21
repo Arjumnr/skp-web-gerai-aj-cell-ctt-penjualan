@@ -11,7 +11,8 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $data = User::all();
+        $data = $data = User::orderBy('created_at', 'asc')->get();
+
             try {
                 if ($request->ajax()) {
                     return DataTables::of($data)

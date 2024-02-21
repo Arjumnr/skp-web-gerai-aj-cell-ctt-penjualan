@@ -32,10 +32,10 @@
         </div>
 
         <div class="d-flex justify-content-end mb-3">
-            <button class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modal-form" id="btn-tambah">
+            {{-- <button class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modal-form" id="btn-tambah">
                 <i class="menu-icon tf-icons  bx bx-plus">
                 </i>
-            </button>
+            </button> --}}
         </div>
         <table class="table table-striped" id="data-table">
             <thead>
@@ -78,7 +78,15 @@
                         name: 'created_at',
                         render: function(data, type, full, meta) {
                             let date = new Date(data);
-                            return date.toLocaleDateString('id-ID');
+
+                            // Subtract one day
+                            date.setDate(date.getDate() - 1);
+
+                            // Format the date
+                            let formattedDate = date.getDate() + '/' + (date.getMonth() + 1) + '/' +
+                                date.getFullYear();
+
+                            return formattedDate;
                         }
                     },
                     {

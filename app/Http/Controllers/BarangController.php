@@ -10,7 +10,7 @@ use Yajra\DataTables\DataTables;
 class BarangController extends Controller
 {
     public function index(Request $request){
-            $data = Barang::all();
+            $data =  Barang::orderBy('stok', 'desc')->get();
             $provider = Provider::all();
         try {
             if ($request->ajax()) {

@@ -13,7 +13,9 @@ use Yajra\DataTables\Facades\DataTables;
 class PencatatanController extends Controller
 {
     public function index(Request $request){
-        $data = Pencatatan::with('get_barang', 'get_user')->get();
+        $data = Pencatatan::with('get_barang', 'get_user')
+            ->orderBy('created_at', 'asc')
+            ->get();
         $barang = Barang::all();
             try {
                 if ($request->ajax()) {
