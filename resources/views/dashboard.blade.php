@@ -13,8 +13,8 @@
                                             class="rounded" />
                                     </div>
                                 </div>
-                                <h1 class="card-title mb-2 text-center">3</h1>
-                                <span class="fw-medium d-block mb-1 text-end">Voucher</span>
+                                <h1 class="card-title mb-2 text-center">{{ $dataPencatatan }}</h1>
+                                <span class="fw-medium d-block mb-1 text-end">Total Penjualan</span>
                                 {{-- <small class="text-success fw-medium"><i class="bx bx-up-arrow-alt"></i> +72.80%</small> --}}
                             </div>
                         </div>
@@ -28,13 +28,13 @@
                                             class="rounded" />
                                     </div>
                                 </div>
-                                <h1 class="card-title mb-2 text-center">2</h1>
-                                <span class="fw-medium d-block mb-1 text-end">Kartu</span>
+                                <h1 class="card-title mb-2 text-center">{{ $dataBarang }}</h1>
+                                <span class="fw-medium d-block mb-1 text-end">Total Barang</span>
                                 {{-- <small class="text-success fw-medium"><i class="bx bx-up-arrow-alt"></i> +72.80%</small> --}}
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-4">
+                    {{-- <div class="col-md-6 mb-4">
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title d-flex align-items-start justify-content-between">
@@ -45,10 +45,9 @@
                                 </div>
                                 <h1 class="card-title mb-2 text-center">3</h1>
                                 <span class="fw-medium d-block mb-1 text-end">Transaksi</span>
-                                {{-- <small class="text-success fw-medium"><i class="bx bx-up-arrow-alt"></i> +72.80%</small> --}}
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <!-- Other Content Goes Here -->

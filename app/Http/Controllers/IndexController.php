@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\Export\UserExport;
 use App\Models\Barang;
+use App\Models\Pencatatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -13,7 +14,10 @@ class IndexController extends Controller
     public function index()
     {
 
-        return view('dashboard');
+        $dataPencatatan = count(Pencatatan::all());
+        $dataBarang = count(Barang::all());
+
+        return view('dashboard', compact('dataPencatatan', 'dataBarang'));
         // if (Auth::check()) {
         //     return redirect('/admin');
         // } else {
