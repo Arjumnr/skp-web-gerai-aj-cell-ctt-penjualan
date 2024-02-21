@@ -91,10 +91,11 @@
 
 
                     <ul class="list-unstyled custom-social">
-                        <li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
+                        {{-- <li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
                         <li><a href="#"><span class="fa fa-brands fa-twitter"></span></a></li>
-                        <li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li>
-                        <li><a href="#"><span class="fa fa-brands fa-linkedin"></span></a></li>
+                        <li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li> --}}
+                        <li><a href="https://wa.me/6282348935818" target="_blank"><span class="fa fa-brands fa-whatsapp"></span>WhatsApp</a>
+                        </li>
                     </ul>
                 </div>
 

@@ -24,6 +24,7 @@ class IndexController extends Controller
 
     public function indexUser(){
         $barang = Barang::all();
+        $barang=$barang->take(4);
         
         if (Auth::check()) {
             $cek = true;

@@ -112,22 +112,34 @@
                 });
             }
 
+            $('#btnTambah').on('click', function() {
+                console.log('click');
+                $('#modal-form').trigger("reset");
+                $('#form').trigger("reset");
+                // $('#modal-form').modal('show');
+                // $('#form').attr('action', "{{ route('barang.store') }}");
+            });
 
 
 
             //add 
             // $('#btn-simpan').on('click', function(e) {
-            //     console.log($("#form").serialize())
+            //     // console.log($("#form").serialize())
             //     e.preventDefault();
             //     $(this).html('Sending..');
+            //     var formData = new FormData(this);
+            //     var id = $('#data_id').val();
+            //     if (id != '') {
+            //         //kirim id lewat form data 
+            //         formData.append('data_id', id);
+            //     }
             //     $.ajax({
             //         url: "{{ route('barang.store') }}",
             //         dataType: 'json',
-            //         data: $("#form").serialize(),
+            //         data: formData,
             //         type: 'POST',
             //         success: function(data) {
-            //             console.log(data.status);
-            //             // table.draw();
+            //             console.log(data);
             //             if (data.status == 'success') {
             //                 Swal.fire({
             //                     position: 'center',
@@ -137,6 +149,7 @@
             //                     timer: 1500
             //                 }).then(function() {
             //                     table.draw();
+
             //                 })
             //             } else {
             //                 Swal.fire({
@@ -145,22 +158,26 @@
             //                     title: 'Gagal',
             //                     showConfirmButton: false,
             //                     timer: 1500
+            //                 }).then(function() {
+            //                     table.draw();
+
             //                 })
             //             }
+            //             $("#basicModal").removeClass("in");
+            //             $(".modal-backdrop").remove();
+            //             $("#basicModal").hide();
+
+            //             $('#form').trigger("reset");
 
             //         },
             //         error: function(data) {
-            //             console.log(data)
-            //             Swal.fire({
-            //                 position: 'center',
-            //                 icon: 'error',
-            //                 title: 'Data gagal ditambahkan',
-            //                 showConfirmButton: false,
-            //                 timer: 1500
-            //             })
+            //             console.log(data);
+
+
             //         }
             //     })
             // })
+
             $('#form').on('submit', function(event) {
                 event.preventDefault();
                 var formData = new FormData(this);
@@ -216,6 +233,35 @@
 
                     }
                 })
+            });
+
+            //edit
+            $('body').on('click', '.edit', function() {
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                // $('#btnSave').html('Update Data')
+
+                var id = $(this).data('id');
+
+                $.get("{{ route('barang.index') }}" + '/' + id + '/edit', function(data) {
+                    console.log("data_id = " + data.id);
+                    // $('#modalHeading').html("Edit User");
+                    // $('#btnSave').val("edit-data");
+                    // $('#basicModal').modal('show');
+                    $('#data_id').val(id);
+                    $('#nama_barang').val(data.nama_barang);
+                    $('#kategori').val(data.kategori).trigger('change');
+                    $('#modal').val(data.modal);
+                    $('#harga').val(data.harga);
+                    $('#stok').val(data.stok);
+
+                })
+
             });
 
 

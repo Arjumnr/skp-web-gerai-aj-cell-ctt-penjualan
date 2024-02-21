@@ -18,7 +18,7 @@ class AdminAuthenticated
     {
 
         if(!Auth::check()){
-            return redirect('getLogin');
+            return redirect('login');
             // return 'apa';
         }
 
@@ -31,7 +31,7 @@ class AdminAuthenticated
           }
           
        //    jika tidak memiliki akses maka kembalikan ke halaman getLogin
-           return redirect('getLogin')->with('error','Maaf anda tidak memiliki akses');
+           return redirect('login')->with('error','Maaf anda tidak memiliki akses');
         
     }
 }

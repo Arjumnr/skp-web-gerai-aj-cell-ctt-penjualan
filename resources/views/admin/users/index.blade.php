@@ -17,6 +17,7 @@
             </tbody>
         </table>
     </div>
+    @include('admin.users.form')
 @endsection
 @push('script')
     <script type="text/javascript">
@@ -83,6 +84,93 @@
                     ]
                 });
             }
+
+            $('#form').on('submit', function(event) {
+                event.preventDefault();
+                var formData = new FormData(this);
+                var id = $('#data_id').val();
+                var url = "{{ route('users.store') }}";
+                if (id != '') {
+                    //kirim id lewat form data 
+                    formData.append('data_id', id);
+                }
+                $.ajax({
+                    url: url,
+                    method: "POST",
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data);
+                        if (data.status == 'success') {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Berhasil',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(function() {
+                                table.draw();
+
+                            })
+                        } else {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: 'Gagal',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(function() {
+                                table.draw();
+
+                            })
+                        }
+                        $("#basicModal").removeClass("in");
+                        $(".modal-backdrop").remove();
+                        $("#basicModal").hide();
+
+                        $('#form').trigger("reset");
+
+                    },
+                    error: function(data) {
+                        console.log(data);
+
+
+                    }
+                })
+            });
+
+
+            $('body').on('click', '.edit', function() {
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                // $('#btnSave').html('Update Data')
+
+                var id = $(this).data('id');
+
+                $.get("{{ route('users.index') }}" + '/' + id + '/edit', function(data) {
+                    console.log("data_id = " + data.id);
+                    // $('#modalHeading').html("Edit User");
+                    // $('#btnSave').val("edit-data");
+                    // $('#basicModal').modal('show');
+                    $('#data_id').val(id);
+                    $('#name').val(data.name);
+                    $('#level').val(data.level).trigger('change');
+                    $('#username').val(data.username);
+                    $('#no_hp').val(data.no_hp);
+                    $('#password').val('');
+
+                })
+
+            });
+
 
 
             $('body').on('click', '.delete', function() {

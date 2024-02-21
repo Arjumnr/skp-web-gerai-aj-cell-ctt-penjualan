@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
@@ -16,7 +17,7 @@ class UserController extends Controller
                     return DataTables::of($data)
                         ->addIndexColumn()
                         ->addColumn('action', function ($row) {
-                            $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-success btn-sm edit"> <i class="menu-icon tf-icons  bx bx-edit"></i></a>';
+                            $btn = '<a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#basicModal" data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-success btn-sm edit"> <i class="menu-icon tf-icons  bx bx-edit"></i></a>';
                             $btn =  $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-danger btn-sm delete"> <i class="menu-icon tf-icons  bx bx-trash"></i></a>';
                             return $btn;
                         })
@@ -34,8 +35,12 @@ class UserController extends Controller
             User::updateOrCreate(
                 ['id' => $request->data_id],
                 [
-                    'nama_barang' => $request->nama_barang,
-                    'harga' => $request->harga,
+                    'name' => $request->name,
+                    'username' => $request->username,
+                    'password' => Hash::make($request->password),
+                    'level' => $request->level,
+                    'no_hp' => $request->no_hp,
+
                 ]
             );
             return response()->json(['status' => 'success', 'message' => 'Save data successfully.']);

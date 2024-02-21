@@ -1,7 +1,36 @@
 @extends('admin._partials.index')
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
+
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pencatatan /</span> Daftar Pencatatan</h4>
+        <div class="container">
+            <form action="{{ route('export') }}" method="POST">
+                @csrf
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group col-md-6">
+                            <label><b>Tanggal Mulai</b></label>
+                            <input type="date" class="form-control" name="start_date" id="start_date" required="">
+                        </div>
+
+                    </div>
+                    <div class="col">
+                        <div class="form-group col-md-6">
+                            <label><b>Tanggal Selesai</b></label>
+                            <input type="date" class="form-control" name="end_date" id="end_date" required="">
+                        </div>
+                    </div>
+                    <div class="col pt-3">
+                        <button type="submit" class="btn btn-success btn-sm" id="btnExport"><span class="btn-label mt-3 ">
+                                <i class="fa fa-print"></i>
+                            </span>
+                            Export Excel</button>
+                        <button type="reset" class="btn btn-danger btn-sm" id="btnReset">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
         <div class="d-flex justify-content-end mb-3">
             <button class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modal-form" id="btn-tambah">
                 <i class="menu-icon tf-icons  bx bx-plus">
@@ -12,9 +41,11 @@
             <thead>
                 <tr>
                     <th>No</th>
+                    <th>Tanggal</th>
                     <th>Barang</th>
                     <th>Jumlah</th>
                     <th>Total</th>
+                    <th>Customer</th>
                     <th width="200px">Action</th>
                 </tr>
             </thead>
@@ -43,6 +74,14 @@
                         name: 'DT_RowIndex'
                     },
                     {
+                        data: 'created_at',
+                        name: 'created_at',
+                        render: function(data, type, full, meta) {
+                            let date = new Date(data);
+                            return date.toLocaleDateString('id-ID');
+                        }
+                    },
+                    {
                         data: 'get_barang.nama_barang',
                         name: 'get_barang.nama_barang'
                     },
@@ -54,6 +93,10 @@
                     {
                         data: 'total',
                         name: 'total'
+                    },
+                    {
+                        data: 'get_user.name',
+                        name: 'get_user.name'
                     },
 
 

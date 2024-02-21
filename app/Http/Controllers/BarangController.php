@@ -17,7 +17,7 @@ class BarangController extends Controller
                 return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function ($row) {
-                        $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-success btn-sm edit"> <i class="menu-icon tf-icons  bx bx-edit"></i></a>';
+                        $btn = '<a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#basicModal" data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-success btn-sm edit"> <i class="menu-icon tf-icons  bx bx-edit"></i></a>';
                         $btn =  $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-danger btn-sm delete"> <i class="menu-icon tf-icons  bx bx-trash"></i></a>';
                         return $btn;
                     })
@@ -32,14 +32,17 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         try {
-
+            // return response()->json(['data' => $request->all()]);
             if (  $request->file('gambar')) {
                 $file =  $request->file('gambar');
                 $name = $file->getClientOriginalName();
                 $file->move(public_path().'/img/barang/', $name);
-            }else{
-                return response()->json(['status' => 'error', 'message' => 'File not found.']);
+            }else {
+                $dataBarang = Barang::find($request->data_id);
+                $name = $dataBarang->gambar;
             }
+
+            
     
             Barang::updateOrCreate(
                 ['id' => $request->data_id],
@@ -53,7 +56,7 @@ class BarangController extends Controller
 
                 ]
             );
-            return response()->json(['status' => 'success', 'message' => 'Save data successfully.']);
+            return response()->json(['data' => $request->all(), 'status' => 'success', 'message' => 'Save data successfully.', ]);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }

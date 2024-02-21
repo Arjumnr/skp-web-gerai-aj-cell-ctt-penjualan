@@ -29,6 +29,7 @@ Route::get('/keranjang' , [App\Http\Controllers\KeranjangController::class, 'ind
 Route::get('/add-keranjang/{id}' , [App\Http\Controllers\KeranjangController::class, 'add'])->name('addKeranjang');
 Route::get('/del-keranjang/{id}' , [App\Http\Controllers\KeranjangController::class, 'delKeranjang'])->name('delKeranjang');
 Route::post('/pesan' , [App\Http\Controllers\KeranjangController::class, 'pesan'])->name('pesan');
+Route::post('/export' , [App\Http\Controllers\PencatatanController::class, 'export'])->name('export');
 
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {

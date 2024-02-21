@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PencatatanExport;
 use App\Models\Barang;
 use App\Models\Pencatatan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
 class PencatatanController extends Controller
 {
     public function index(Request $request){
-        $data = Pencatatan::with('get_barang')->get();
+        $data = Pencatatan::with('get_barang', 'get_user')->get();
         $barang = Barang::all();
             try {
                 if ($request->ajax()) {
@@ -61,5 +64,21 @@ class PencatatanController extends Controller
             } catch (\Exception $e) {
                 return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
             }
+        }
+
+        public function export (Request $request) {
+            // dd ($request->all());
+
+            $startDate = $request->start_date;
+            $endDate = $request->end_date;
+
+            $startDatePareseCarbon = new Carbon($startDate);
+            $endDatePareseCarbon = new Carbon($endDate);
+
+            
+            // $data = Pencatatan::all();
+
+            
+            return Excel::download(new PencatatanExport($startDatePareseCarbon, $endDatePareseCarbon), 'pencatatan.xlsx', \Maatwebsite\Excel\Excel::XLSX, );
         }
 }
